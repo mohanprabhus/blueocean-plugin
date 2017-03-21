@@ -27,7 +27,6 @@ import org.jenkinsci.plugins.workflow.job.WorkflowRun;
 import org.jenkinsci.plugins.workflow.support.steps.input.InputAction;
 import org.kohsuke.stapler.QueryParameter;
 import org.kohsuke.stapler.export.Exported;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,7 +79,7 @@ public class PipelineRunImpl extends AbstractRunImpl<WorkflowRun> {
     @Override
     public BlueQueueItem replay() {
         ReplayAction replayAction = run.getAction(ReplayAction.class);
-        if(replayAction == null) {
+        if(isReplayable(replayAction)) {
             throw new ServiceException.BadRequestExpception("This run does not support replay");
         }
 
@@ -93,6 +92,16 @@ public class PipelineRunImpl extends AbstractRunImpl<WorkflowRun> {
         } else {
             return queueItem;
         }
+    }
+
+    @Override
+    public boolean isReplayable() {
+        ReplayAction replayAction = run.getAction(ReplayAction.class);
+        return isReplayable(replayAction);
+    }
+
+    private boolean isReplayable(ReplayAction replayAction) {
+        return replayAction != null && replayAction.isEnabled();
     }
 
     @Override
