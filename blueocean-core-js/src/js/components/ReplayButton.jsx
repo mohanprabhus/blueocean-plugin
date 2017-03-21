@@ -78,7 +78,7 @@ export class ReplayButton extends Component {
         const innerButtonClass = outerClassNames.indexOf('icon-button') === -1 ? 'btn inverse' : '';
 
         const isFinished = isRunFinished(this.props.latestRun);
-        const isPipeline = capable(this.props.runnable, PIPELINE_CAPABILITIES);
+        const isReplayable = this.props.latestRun.replayable;
         const hasPermission = permit(this.props.runnable).start();
 
         const replayLabel = translate('toast.re-run', { defaultValue: 'Re-run' });

@@ -38,6 +38,7 @@ public abstract class BlueRun extends Resource {
     public static final String RESULT = "result";
     public static final String STATE = "state";
     public static final String ACTIONS = "actions";
+    public static final String REPLAYABLE = "replayable";
 
     public static final int DEFAULT_BLOCKING_STOP_TIMEOUT_IN_SECS=10;
 
@@ -219,6 +220,12 @@ public abstract class BlueRun extends Resource {
      */
     @POST @TreeResponse @WebMethod(name = "replay")
     public abstract BlueQueueItem replay();
+
+    /**
+     * @return if the run will allow a replay
+     */
+    @Exported(name = REPLAYABLE)
+    public abstract boolean isReplayable();
 
     public enum BlueRunState {
         QUEUED,
