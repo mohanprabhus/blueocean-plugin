@@ -11,6 +11,14 @@ import 'moment/min/locales.min';
 
 @observer
 export default class TestResults extends Component {
+
+    propTypes = {
+        pipeline: PropTypes.object,
+        run: PropTypes.object,
+        t: PropTypes.func,
+        locale: PropTypes.string,
+    };
+
     componentWillMount() {
         this.testService = new TestService(pagerService);
         this._initPagers(this.props);
@@ -73,10 +81,3 @@ export default class TestResults extends Component {
         );
     }
 }
-
-TestResults.propTypes = {
-    pipeline: PropTypes.object,
-    run: PropTypes.object,
-    t: PropTypes.func,
-    locale: PropTypes.string,
-};
