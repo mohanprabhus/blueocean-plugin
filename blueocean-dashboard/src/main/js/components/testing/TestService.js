@@ -1,7 +1,13 @@
 import { BunkerService } from '../../../../../../blueocean-core-js/src/js/services/BunkerService';
 import { Pager } from '@jenkins-cd/blueocean-core-js';
+import TestLogService from './TestLogService';
 
 export default class TestService extends BunkerService {
+
+    constructor(pagerService) {
+        super(pagerService);
+        this._logs = new TestLogService(pagerService);
+    }
 
     newRegressionsPager(pipeline, run) {
         return this.pagerService.getPager({
@@ -29,6 +35,10 @@ export default class TestService extends BunkerService {
             key: `tests/fixed/${pipeline.organization}-${pipeline.name}-${run.id}/`,
             lazyPager: () => new Pager(TestService.createURL({ run, status: null, state: 'FIXED' }), 100, this),
         });
+    }
+
+    testLogs() {
+        return this._logs;
     }
 
     static createURL({ run, status, state }) {

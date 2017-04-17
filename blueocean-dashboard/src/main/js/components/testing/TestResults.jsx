@@ -55,6 +55,7 @@ export default class TestResults extends Component {
                     extraClasses="new-failure-block"
                     locale={locale} t={translation}
                     total={run.testSummary.regressions}
+                    testService={this.testService}
                 />
                 <TestSection
                     titleKey="rundetail.tests.results.errors.existing.count"
@@ -62,6 +63,7 @@ export default class TestResults extends Component {
                     extraClasses="existing-failure-block"
                     locale={locale} t={translation}
                     total={run.testSummary.existingFailed}
+                    testService={this.testService}
                 />
                 <TestSection
                     titleKey="rundetail.tests.results.fixed"
@@ -69,6 +71,7 @@ export default class TestResults extends Component {
                     extraClasses="fixed-block"
                     locale={locale} t={translation}
                     total={run.testSummary.fixed}
+                    testService={this.testService}
                 />
                 <TestSection
                     titleKey="rundetail.tests.results.skipped.count"
@@ -76,6 +79,7 @@ export default class TestResults extends Component {
                     extraClasses="skipped-block"
                     locale={locale} t={translation}
                     total={run.testSummary.skipped}
+                    testService={this.testService}
                 />
             </div>
         );
