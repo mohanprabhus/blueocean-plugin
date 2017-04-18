@@ -8,7 +8,7 @@ import {
     calculateNodeBaseUrl,
     calculateStepsBaseUrl,
     getRestUrl,
-    paginateUrl
+    paginateUrl,
 } from '../util/UrlUtils';
 import findAndUpdate from '../util/find-and-update';
 import { Fetch, FetchFunctions } from '@jenkins-cd/blueocean-core-js';
