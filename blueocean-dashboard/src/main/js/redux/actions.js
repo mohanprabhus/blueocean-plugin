@@ -1,9 +1,15 @@
 import keymirror from 'keymirror';
-import { fetch as smartFetch, paginate, applyFetchMarkers } from '../util/smart-fetch';
+import { applyFetchMarkers, fetch as smartFetch, paginate } from '../util/smart-fetch';
 import { State } from '../components/records';
 import UrlConfig from '../config';
 import { getNodesInformation } from '../util/logDisplayHelper';
-import { calculateStepsBaseUrl, calculateLogUrl, calculateNodeBaseUrl, paginateUrl, getRestUrl } from '../util/UrlUtils';
+import {
+    calculateLogUrl,
+    calculateNodeBaseUrl,
+    calculateStepsBaseUrl,
+    getRestUrl,
+    paginateUrl
+} from '../util/UrlUtils';
 import findAndUpdate from '../util/find-and-update';
 import { Fetch, FetchFunctions } from '@jenkins-cd/blueocean-core-js';
 const debugLog = require('debug')('blueocean-actions-js:debug');
@@ -28,6 +34,7 @@ function _mapQueueToPsuedoRun(run) {
             enQueueTime: run.queuedTime,
             organization: run.organization,
             changeSet: [],
+            causeOfBlockage: run.causeOfBlockage,
             _item: run,
         };
     }
@@ -246,7 +253,7 @@ export const actions = {
     clearPipelineData() {
         return (dispatch) => dispatch({ type: ACTION_TYPES.CLEAR_PIPELINE_DATA });
     },
-    
+
     /**
      * Returns cached global pipeline list or causes a fetch
      */

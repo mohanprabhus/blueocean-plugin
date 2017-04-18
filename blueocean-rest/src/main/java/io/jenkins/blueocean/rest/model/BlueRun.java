@@ -37,6 +37,7 @@ public abstract class BlueRun extends Resource {
     public static final String RUN_SUMMARY = "runSummary";
     public static final String RESULT = "result";
     public static final String STATE = "state";
+    public static final String CAUSE_OF_BLOCKAGE = "causeOfBlockage";
     public static final String ACTIONS = "actions";
 
     public static final int DEFAULT_BLOCKING_STOP_TIMEOUT_IN_SECS=10;
@@ -218,7 +219,10 @@ public abstract class BlueRun extends Resource {
      * @return The queued item.
      */
     @POST @TreeResponse @WebMethod(name = "replay")
-    public abstract BlueQueueItem replay();
+    public abstract BlueRun replay();
+
+    @Exported(name = CAUSE_OF_BLOCKAGE)
+    public abstract String getCauseOfBlockage();
 
     public enum BlueRunState {
         QUEUED,
