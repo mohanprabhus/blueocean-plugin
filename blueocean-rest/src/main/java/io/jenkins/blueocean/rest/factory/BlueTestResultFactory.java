@@ -112,11 +112,6 @@ public abstract class BlueTestResultFactory implements ExtensionPoint {
                 summary = summary.tally(result.summary);
             }
         }
-        // Never send back an empty summary
-        if (summary.getTotal() == 0) {
-            summary = null;
-            results = null;
-        }
-        return Result.of(results, summary);
+        return summary.getTotal() == 0 ? Result.notFound() : Result.of(results, summary);
     }
 }
