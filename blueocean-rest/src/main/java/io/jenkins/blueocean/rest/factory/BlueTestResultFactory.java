@@ -1,4 +1,4 @@
-package io.jenkins.blueocean.service.embedded.rest;
+package io.jenkins.blueocean.rest.factory;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
@@ -25,7 +25,7 @@ public abstract class BlueTestResultFactory implements ExtensionPoint {
      */
     public static final class Result {
 
-        private static final Result NOT_FOUND = new Result(ImmutableList.<BlueTestResult>of(), null);
+        private static final Result NOT_FOUND = new Result(null, null);
 
         @Nullable
         public final Iterable<BlueTestResult> results;

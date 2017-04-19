@@ -59,6 +59,7 @@
                                         <allowedImport>hudson.ExtensionListListener</allowedImport>
                                         <allowedImport>hudson.security.csrf.CrumbExclusion</allowedImport>
                                         <allowedImport>hudson.util.AdaptedIterator</allowedImport>
+                                        <allowedImport>hudson.Util</allowedImport>
                                     </allowedImports>
                                     <excludedClasses>
                                         <excludedClass>io.jenkins.blueocean.rest.factory.*</excludedClass>
